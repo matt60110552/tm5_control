@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(sophia_test)
+project(tm_cotrol_interface)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -27,7 +27,6 @@ find_package(catkin REQUIRED COMPONENTS
   # tm_description
   tm_msgs
   tm_driver
-  tm_kinematics
 )
 
 find_package(Eigen3 REQUIRED)
@@ -74,8 +73,8 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- INCLUDE_DIRS include
- LIBRARIES sophia_test
+#  INCLUDE_DIRS include
+ LIBRARIES tm_cotrol_interface
  CATKIN_DEPENDS 
   geometry_msgs 
   message_filters 
@@ -85,7 +84,6 @@ catkin_package(
   std_msgs 
   tf 
   tm_driver 
-  tm_kinematics
 #  DEPENDS system_lib
 )
 
@@ -96,7 +94,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
+  # include
   ${catkin_INCLUDE_DIRS}
   # ${Boost_INCLUDE_DIRS}
 )
@@ -119,17 +117,17 @@ target_link_libraries (find_target_bone0524 ${catkin_LIBRARIES} ${EIGEN3_INCLUDE
 add_executable (tm_pose_test src/tm_pose_test.cpp)
 # add_dependencies(tm_pose_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries (tm_pose_test ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
-add_executable (tm_move src/tm_move.cpp)
-target_link_libraries (tm_move TM_kinematics TM_print ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
+# add_executable (tm_move src/tm_move.cpp)
+# target_link_libraries (tm_move TM_kinematics TM_print ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
 
 add_executable (start_move src/start_move.cpp)
 target_link_libraries (start_move ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
 
-add_executable (tm_move2target src/tm_move2target.cpp)
-target_link_libraries (tm_move2target TM_kinematics TM_print ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
+# add_executable (tm_move2target src/tm_move2target.cpp)
+# target_link_libraries (tm_move2target TM_kinematics TM_print ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
 
 add_executable (tm_move2target_line src/tm_move2target_line.cpp)
-target_link_libraries (tm_move2target_line TM_kinematics TM_print ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
+target_link_libraries (tm_move2target_line ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
 
 add_executable (bt300 src/bt300.cpp)
 target_link_libraries (bt300 ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
@@ -140,8 +138,8 @@ target_link_libraries (target_pub_test ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS
 add_executable (settarget src/settarget.cpp)
 target_link_libraries (settarget ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
 
-add_executable (tm_move2target_csv src/tm_move2target_csv.cpp)
-target_link_libraries (tm_move2target_csv TM_kinematics TM_print ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
+# add_executable (tm_move2target_csv src/tm_move2target_csv.cpp)
+# target_link_libraries (tm_move2target_csv TM_kinematics TM_print ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
 
 add_executable (find_target_qr2bone src/find_target_qr2bone.cpp)
 target_link_libraries (find_target_qr2bone ${catkin_LIBRARIES} ${EIGEN3_INCLUDE_DIRS})
